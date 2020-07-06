@@ -48,16 +48,24 @@ const useStyles = makeStyles(theme => ({
             marginBottom: "1.5rem"
         },
         [theme.breakpoints.down("xs")]: {
-            marginBottom: "2rem"
+            marginBottom: "0px"
         }
     },
+    toolbar: {
+        [theme.breakpoints.down("xs")]: {
+            height: "3.5rem"
+        },
+    },
     logo: {
-        height: "7rem",
+        height: "5rem",
         [theme.breakpoints.down("md")]: {
-            height: "6rem",
+            height: "4.5rem",
         },
         [theme.breakpoints.down("sm")]: {
-            height: "5.5rem"
+            height: "4.5rem"
+        },
+        [theme.breakpoints.down("xs")]: {
+            height: "3.5rem"
         }
     },
     logoContainer: {
@@ -79,7 +87,10 @@ const useStyles = makeStyles(theme => ({
         marginLeft: "25px",
         marginRight: "50px",
         borderRadius: "50px",
-        height: "45px"
+        height: "45px",
+        "&:hover": {
+            backgroundColor: theme.palette.secondary.light
+        }
 
     },
     menu: {
@@ -129,13 +140,12 @@ const menuOptions = [
     {name: "Website Development", location: "/website", activeIndex: 1, selectedIndex: 3}];
 
 
-function Header(props) {
+function Header({value, setValue, selectedMenuItem, setSelectedMenuItem, ...props}) {
     const classes = useStyles();
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.down('md'));
     const [openDrawer, setOpenDrawer] = useState(false);
-    const [value, setValue] = useState(0);
-    const [selectedMenuItem, setSelectedMenuItem] = useState(0);
+
     const [anchorEl, setAnchorEl] = useState(null);
     const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
@@ -189,7 +199,7 @@ function Header(props) {
                     break;
             }
         });
-    }, [value, selectedMenuItem, routes])
+    }, [value, selectedMenuItem, routes, setValue, setSelectedMenuItem])
 
     const tabs = (
         <React.Fragment>
@@ -203,7 +213,8 @@ function Header(props) {
                     } else return null;
                 })}
             </Tabs>
-            <Button variant="contained" color="secondary" className={classes.button} component={Link} to="/estimate">Free Estimate</Button>
+            <Button variant="contained" color="secondary" className={classes.button} component={Link} to="/estimate">Free
+                Estimate</Button>
             <Menu id="simple-menu" anchorEl={anchorEl}
                   onClose={handleClose}
                   open={Boolean(anchorEl)}
@@ -257,7 +268,7 @@ function Header(props) {
         <React.Fragment>
             <ElevationScroll>
                 <AppBar className={classes.appBar} position="fixed">
-                    <Toolbar disableGutters>
+                    <Toolbar disableGutters className={classes.toolbar}>
                         <Button className={classes.logoContainer} disableRipple component={Link} to="/"
                                 onClick={() => setValue(0)}><img src={logo} alt="company logo"
                                                                  className={classes.logo}/></Button>
