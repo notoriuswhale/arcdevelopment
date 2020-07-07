@@ -23,9 +23,19 @@ import { useMediaQuery } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
     mainContainer: {
-        padding: "2rem 5rem 10rem 5rem",
+        margin: "auto",
+        maxWidth: "120rem",
+        padding: "3.5rem 11.5rem 0 11.5rem",
+        [theme.breakpoints.down("md")]: {
+            padding: "2.5rem 5.5rem",
+        },
         [theme.breakpoints.down("sm")]: {
             padding: "1rem 1rem 3rem 1rem",
+        },
+    },
+    headerContainer: {
+        [theme.breakpoints.down("md")]: {
+            justifyContent: "center",
         },
     },
     heading: {
@@ -33,9 +43,6 @@ const useStyles = makeStyles((theme) => ({
     },
     arrowContainer: {
         marginTop: ".5rem",
-    },
-    itemContainer: {
-        maxWidth: "40rem",
     },
 }));
 
@@ -77,8 +84,6 @@ const CustomSoftware = (props) => {
     const classes = useStyles();
     const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
     const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
-    const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
-
     return (
         <>
             <Grid
@@ -150,7 +155,15 @@ const CustomSoftware = (props) => {
                         </Grid>
                     </Grid>
                     <Hidden mdDown>
-                        <Grid item className={classes.arrowContainer}>
+                        <Grid
+                            item
+                            className={classes.arrowContainer}
+                            style={{
+                                marginRight: "-3.5rem",
+                                flexGrow: 1,
+                                textAlign: "right",
+                            }}
+                        >
                             <IconButton
                                 style={{ backgroundColor: "transparent" }}
                                 component={Link}

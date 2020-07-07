@@ -8,6 +8,8 @@ import { Footer } from "./ui/Footer";
 import { LandingPage } from "./LandingPage";
 import { ServicesPage } from "./ServicesPage";
 import { CustomSoftware } from "./CustomSoftware";
+import { MobileAppsPage } from "./MobileAppsPage";
+import { WebsitePage } from "./WebsitePage";
 
 function App() {
     const [value, setValue] = useState(0);
@@ -32,13 +34,9 @@ function App() {
                     <Route
                         path="/mobileapps"
                         exact
-                        component={() => <div>mobile apps</div>}
+                        component={MobileAppsPage}
                     />
-                    <Route
-                        path="/website"
-                        exact
-                        component={() => <div>website</div>}
-                    />
+                    <Route path="/website" exact component={WebsitePage} />
                     <Route
                         path="/revolution"
                         exact
