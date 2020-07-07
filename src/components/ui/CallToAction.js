@@ -28,6 +28,7 @@ const useStyles = makeStyles(theme => ({
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         height: "75vh",
+        minHeight: "40rem",
         padding: "5rem",
         width: "100%",
         [theme.breakpoints.down("md")]: {

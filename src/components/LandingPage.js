@@ -15,10 +15,10 @@ import mobileAppsIcon from "../assets/mobileIcon.svg";
 import websiteIcon from "../assets/websiteIcon.svg";
 import revolutionBackground from "../assets/repeatingBackground.svg"
 import aboutBackground from "../assets/infoBackground.svg";
-import {ServiceItem} from "./ui/ServiceItem";
+import { ServiceItem } from "./ui/ServiceItem";
 
 
-import {CallToAction} from "./ui/CallToAction"
+import { CallToAction } from "./ui/CallToAction"
 
 const useStyles = makeStyles(theme => ({
     mainContainer: {
@@ -84,17 +84,9 @@ const useStyles = makeStyles(theme => ({
         fontFamily: "Pacifico",
         color: theme.palette.secondary.main
     },
-    subtitle: {
-        marginBottom: "1rem",
-    },
-    icon: {
-        marginLeft: "2rem",
-        [theme.breakpoints.down("xs")]: {
-            marginLeft: 0,
-        },
-    },
     servicesContainer: {
         marginTop: "6rem",
+
         [theme.breakpoints.down("sm")]: {
             marginTop: "1rem",
         }
@@ -110,6 +102,7 @@ const useStyles = makeStyles(theme => ({
         backgroundImage: `url(${revolutionBackground})`,
         backgroundPosition: "center",
         height: "100vh",
+        minHeight: "60rem",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         width: "100%",
@@ -140,16 +133,16 @@ const useStyles = makeStyles(theme => ({
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         height: "100vh",
+        minHeight: "60rem",
         width: "100%",
         padding: "5rem",
         [theme.breakpoints.down("xs")]: {
-            
             padding: "0",
-            "align-items": "center",
-            "justify-content": "center",
+            alignItems: "center",
+            justifyContent: "center",
         }
     },
-    aboutTextConteiner:{
+    aboutTextConteiner: {
         [theme.breakpoints.down("xs")]: {
             "flex-direction": "column",
         }
@@ -190,84 +183,45 @@ const LandingPage = (props) => {
                 </Grid>
             </Grid>
 
-            <Grid item container className={classes.servicesContainer}> {/*-----Services Block*/}
-
-                <ServiceItem header="Custom Software Development" 
-                             subtitle1="Save Energy. Save Time. Save Money." subtitle2={<>Complete digital solutions, from investigation to <span className={classes.specialText}>selebration.</span></>} 
-                             imageSrc={customSoftwareIcon}/>
+            <Grid item container className={classes.servicesContainer} direction="column"> {/*-----Services Block*/}
                 {/*Custom Software Developmnt*/}
-                <Grid item container direction="row" className={classes.serviceContainer} justify={matchesSM ? "center" : undefined}>
-                    <Grid item style={{ marginLeft: matchesSM ? 0 : "5rem", textAlign: matchesSM ? "center" : undefined }}>
-                        <Typography variant="h4">
-                            Custom Software Development
-                        </Typography>
-                        <Typography variant="subtitle1" className={classes.subtitle}>
-                            Save Energy. Save Time. Save Money.
-                        </Typography>
-                        <Typography variant="subtitle1">
-                            
-                        </Typography>
-                        <Button variant="outlined" className={classes.learnBtn}>
-                            <span style={{ marginRight: "10px" }}>Learn More</span>
-                            <ButtonArrow fill={theme.palette.primary.main} width="10" height="10" />
-                        </Button>
-                    </Grid>
-                    <Grid item>
-                        <img className={classes.icon} alt="" src={customSoftwareIcon} />
-                    </Grid>
+                <Grid item className={classes.serviceContainer}>
+                <ServiceItem header="Custom Software Development"
+                    subtitle1="Save Energy. Save Time. Save Money."
+                    subtitle2={<>Complete digital solutions, from investigation to <span className={classes.specialText}>selebration.</span></>}
+                    center={matchesSM}
+                    imageSrc={customSoftwareIcon} />
                 </Grid>
+
+
+
                 {/*iOS/Android Developmnt*/}
-                <Grid item container direction="row"
-                    className={classes.serviceContainer}
-                    justify={matchesSM ? "center" : "flex-end"}
-                    style={{ marginRight: matchesSM ? 0 : "5rem", textAlign: matchesSM ? "center" : undefined }}>
-                    <Grid item >
-                        <Typography variant="h4">
-                            iOS/Android App Development
-                        </Typography>
-                        <Typography variant="subtitle1" className={classes.subtitle}>
-                            Extend functionality. Extend Access. Increase engagement.
-                        </Typography>
-                        <Typography variant="subtitle1">
-                            Integrate your web expirience or create a standalone app {matchesSM ? null : <br />} with either mobile platform.
-                        </Typography>
-                        <Button variant="outlined" className={classes.learnBtn}>
-                            <span style={{ marginRight: "10px" }}>Learn More</span>
-                            <ButtonArrow fill={theme.palette.primary.main} width="10" height="10" />
-                        </Button>
-                    </Grid>
-                    <Grid item>
-                        <img className={classes.icon} alt="" src={mobileAppsIcon} />
-                    </Grid>
+                <Grid item className={classes.serviceContainer}>
+                <ServiceItem header="iOS/Android App Development"
+                    subtitle1="Extend functionality. Extend Access. Increase engagement."
+                    subtitle2={<>Integrate your web expirience or create a standalone app {matchesSM ? null : <br />} with either mobile platform.</>}
+                    justify="flex-end"
+                    center={matchesSM}
+                    imageSrc={mobileAppsIcon} />
                 </Grid>
+
+
 
                 {/*Website Developmnt*/}
-                <Grid item container direction="row" className={classes.serviceContainer} justify={matchesSM ? "center" : undefined}>
-                    <Grid item style={{ marginLeft: matchesSM ? 0 : "5rem", textAlign: matchesSM ? "center" : undefined }}>
-                        <Typography variant="h4">
-                            Website Developmnt
-                        </Typography>
-                        <Typography variant="subtitle1" className={classes.subtitle}>
-                            Reach more. Discover more. Sell more.
-                        </Typography>
-                        <Typography variant="subtitle1">
-                            Optimized for Search Engines, build for speed.
-                        </Typography>
-                        <Button variant="outlined" className={classes.learnBtn}>
-                            <span style={{ marginRight: "10px" }}>Learn More</span>
-                            <ButtonArrow fill={theme.palette.primary.main} width="10" height="10" />
-                        </Button>
-                    </Grid>
-                    <Grid item>
-                        <img className={classes.icon} alt="" src={websiteIcon} />
-                    </Grid>
+                <Grid item className={classes.serviceContainer}>
+                <ServiceItem header="Website Development"
+                    subtitle1="Reach more. Discover more. Sell more."
+                    subtitle2="Optimized for Search Engines, build for speed."
+                    center={matchesSM}
+                    imageSrc={websiteIcon} />
                 </Grid>
+
 
             </Grid>
 
             {/*The Revolution block*/}
             <Grid item container className={classes.revolutionBackground} alignItems="center">
-                <Grid container  className={classes.revolutionCardContainer} justify="center" >
+                <Grid container className={classes.revolutionCardContainer} justify="center" >
                     <Card style={{ textAlign: "center" }} className={classes.revolutionCard}>
                         <Typography variant="h3" gutterBottom>The Revolution</Typography>
                         <Typography variant="subtitle1">Visionary insights coupled with cutting-edge technology is a recipe for revolution</Typography>
@@ -278,17 +232,17 @@ const LandingPage = (props) => {
 
             {/*The about block*/}
             <Grid item className={classes.aboutBackground} container alignItems="center" >
-                <Grid item container justify="space-between"  className={classes.aboutTextConteiner}>
-                    <Grid item style={{textAlign: matchesXS ? 'center' : "inherit", marginBottom: matchesXS?"3rem":0}}>
+                <Grid item container justify="space-between" className={classes.aboutTextConteiner}>
+                    <Grid item style={{ textAlign: matchesXS ? 'center' : "inherit", marginBottom: matchesXS ? "3rem" : 0 }}>
                         <Typography variant="h2" style={{ color: "white" }}>About Us</Typography>
                         <Typography variant="subtitle2">Lets get personal.</Typography>
                         <Button variant="outlined" className={classes.learnBtnHero} style={{ color: "white", borderColor: "white" }}><span style={{ marginRight: "10px", }}>Learn More</span><ButtonArrow fill="white" width="15" height="15" /></Button>
                     </Grid>
-                    <Grid item style={{textAlign: matchesXS ? 'center' : "right"}}>
+                    <Grid item style={{ textAlign: matchesXS ? 'center' : "right" }}>
                         <Typography variant="h2" style={{ color: "white" }}>Contact Us</Typography>
                         <Typography variant="subtitle2">Say hello</Typography>
                         <Button variant="outlined" className={classes.learnBtnHero} style={{ color: "white", borderColor: "white" }}><span style={{ marginRight: "10px", }}>Learn More</span><ButtonArrow fill="white" width="15" height="15" /></Button>
-                    </Grid> 
+                    </Grid>
                 </Grid>
             </Grid>
             <Grid item>

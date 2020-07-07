@@ -6,6 +6,8 @@ import theme from "./ui/Theme"
 import {Header} from "./ui/Header";
 import {Footer} from "./ui/Footer";
 import {LandingPage} from "./LandingPage";
+import {ServicesPage} from "./ServicesPage"
+import {CustomSoftware} from "./CustomSoftware"
 
 function App() {
     const [value, setValue] = useState(0);
@@ -16,8 +18,8 @@ function App() {
                 <Header value={value} setValue={setValue} selectedMenuItem={selectedMenuItem} setSelectedMenuItem={setSelectedMenuItem}/>
                 <Switch>
                     <Route path="/" exact component={LandingPage}/>
-                    <Route path="/services" exact component={() => <div>services</div>}/>
-                    <Route path="/customsoftware" exact component={() => <div>custom software</div>}/>
+                    <Route path="/services" exact component={ServicesPage}/>
+                    <Route path="/customsoftware" exact component={CustomSoftware}/>
                     <Route path="/mobileapps" exact component={() => <div>mobile apps</div>}/>
                     <Route path="/website" exact component={() => <div>website</div>}/>
                     <Route path="/revolution" exact component={() => <div>revolution</div>}/>

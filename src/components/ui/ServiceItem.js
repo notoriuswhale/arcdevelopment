@@ -9,19 +9,15 @@ import ButtonArrow from "./ButtonArrow"
 
 
 const useStyles = makeStyles(theme => ({
-    // serviceContainer: {
-    //     marginTop: "8rem",
-    //     [theme.breakpoints.down("sm")]: {
-    //         marginTop: "5rem",
-    //         padding: "1rem",
-    //     }
-    // },
-    serviceTextContainer: {
-
+    left: {
+        paddingLeft: "5rem",
     },
-    specialText: {
-        fontFamily: "Pacifico",
-        color: theme.palette.secondary.main
+    right: {
+        paddingRight: "5rem",
+        // textAlign: "right",
+    },
+    center: {
+        textAlign: "center"
     },
     subtitle: {
         marginBottom: "1rem",
@@ -37,20 +33,30 @@ const useStyles = makeStyles(theme => ({
     },
     icon: {
         marginLeft: "2rem",
+        width: "12em",
         [theme.breakpoints.down("xs")]: {
             marginLeft: 0,
+            "max-width":"100%"
         },
     },
+    textConteiner:{
+        width: "35rem",
+        [theme.breakpoints.down("sm")]:{
+            width: "auto"
+        }
+    }
 }));
 
 const ServiceItem = (props) => {
-    const {header, subtitle1, subtitle2, imageSrc, justify} = props
+    const {header, subtitle1, subtitle2, imageSrc, justify, center} = props
     const theme = useTheme();
     const classes = useStyles();
 
     return (
-        <Grid container className={"asdfafsd"/*classes.serviceContainer*/} justify={justify}>
-        <Grid item style={{textAlign: justify==='flex-end' ? "right" : "initial" }}>
+        <Grid container justify={center ? "center" : justify} 
+                        direction={center ? "column" : "row"}
+                        className={center ? classes.center : (justify==='flex-end' ? classes.right : classes.left)}>
+        <Grid item className={classes.textConteiner}>
             <Typography variant="h4">
             {header}
             </Typography>
