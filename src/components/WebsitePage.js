@@ -75,13 +75,8 @@ const WebsitePage = (props) => {
 
     return (
         <>
-            <Grid conteiner className={classes.mainContainer}>
-                <Grid
-                    item
-                    container
-                    justify
-                    className={classes.headerContainer}
-                >
+            <Grid container className={classes.mainContainer}>
+                <Grid item container className={classes.headerContainer}>
                     <Hidden mdDown>
                         <Grid
                             item
@@ -114,8 +109,6 @@ const WebsitePage = (props) => {
                             <Typography variant="h2">
                                 Website Development
                             </Typography>
-                        </Grid>
-                        <Grid item>
                             <Typography variant="body1" paragraph>
                                 Having a website is a necessity in today’s
                                 business world. They give you one central,

@@ -6,6 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 
 import ButtonArrow from "./ButtonArrow";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     left: {
@@ -70,7 +71,12 @@ const ServiceItem = (props) => {
                     {subtitle1}
                 </Typography>
                 <Typography variant="subtitle1">{subtitle2}</Typography>
-                <Button variant="outlined" className={classes.learnBtn}>
+                <Button
+                    variant="outlined"
+                    className={classes.learnBtn}
+                    component={Link}
+                    to={props.href}
+                >
                     <span style={{ marginRight: "10px" }}>Learn More</span>
                     <ButtonArrow
                         fill={theme.palette.primary.main}

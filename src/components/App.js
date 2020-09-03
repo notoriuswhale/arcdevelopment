@@ -10,6 +10,10 @@ import { ServicesPage } from "./ServicesPage";
 import { CustomSoftware } from "./CustomSoftware";
 import { MobileAppsPage } from "./MobileAppsPage";
 import { WebsitePage } from "./WebsitePage";
+import { TheRevolutionPage } from "./TheRevolutionPage";
+import { AboutUsPage } from "./AboutUsPage";
+import { ContactUsPage } from "./ContactUsPage";
+import { EstimatePage } from "./EstimatePage";
 
 function App() {
     const [value, setValue] = useState(0);
@@ -40,23 +44,11 @@ function App() {
                     <Route
                         path="/revolution"
                         exact
-                        component={() => <div>revolution</div>}
+                        component={TheRevolutionPage}
                     />
-                    <Route
-                        path="/about"
-                        exact
-                        component={() => <div>about</div>}
-                    />
-                    <Route
-                        path="/contact"
-                        exact
-                        component={() => <div>contact</div>}
-                    />
-                    <Route
-                        path="/estimate"
-                        exact
-                        component={() => <div>estimate</div>}
-                    />
+                    <Route path="/about" exact component={AboutUsPage} />
+                    <Route path="/contact" exact component={ContactUsPage} />
+                    <Route path="/estimate" exact component={EstimatePage} />
                 </Switch>
                 <Footer
                     value={value}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import { makeStyles } from "@material-ui/styles";
@@ -16,7 +16,7 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import logo from "../../assets/logo.svg";
 import { Button } from "@material-ui/core";
@@ -51,6 +51,13 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     toolbar: {
+        height: "5rem",
+        [theme.breakpoints.down("md")]: {
+            height: "4.5rem",
+        },
+        [theme.breakpoints.down("sm")]: {
+            height: "4.5rem",
+        },
         [theme.breakpoints.down("xs")]: {
             height: "3.5rem",
         },
@@ -158,17 +165,15 @@ const menuOptions = [
     },
 ];
 
-function Header({
-    value,
-    setValue,
-    selectedMenuItem,
-    setSelectedMenuItem,
-    ...props
-}) {
+function Header({ props }) {
+    const [value, setValue] = useState(0);
+    const [selectedMenuItem, setSelectedMenuItem] = useState(0);
     const classes = useStyles();
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.down("md"));
     const [openDrawer, setOpenDrawer] = useState(false);
+
+    const location = useLocation();
 
     const [anchorEl, setAnchorEl] = useState(null);
     const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
@@ -191,33 +196,38 @@ function Header({
         setAnchorEl(null);
     };
 
-    const routes = [
-        { name: "Home", location: "/", activeIndex: 0 },
-        {
-            name: "Services",
-            location: "/services",
-            activeIndex: 1,
-            props: {
-                "aria-controls": "simple-menu",
-                "aria-haspopup": "true",
-                onMouseOver: handleClick,
+    const routes = useMemo(
+        () => [
+            { name: "Home", location: "/", activeIndex: 0 },
+            {
+                name: "Services",
+                location: "/services",
+                activeIndex: 1,
+                props: {
+                    "aria-controls": "simple-menu",
+                    "aria-haspopup": "true",
+                    onMouseOver: handleClick,
+                },
             },
-        },
-        { name: "The Revolution", location: "/revolution", activeIndex: 2 },
-        { name: "About Us", location: "/about", activeIndex: 3 },
-        { name: "Contact Us", location: "/contact", activeIndex: 4 },
-        {
-            name: "Free Estimate",
-            location: "/estimate",
-            activeIndex: 5,
-            tabInvisible: true,
-            props: { className: classes.drawerItemEstimate },
-        },
-    ];
+            { name: "The Revolution", location: "/revolution", activeIndex: 2 },
+            { name: "About Us", location: "/about", activeIndex: 3 },
+            { name: "Contact Us", location: "/contact", activeIndex: 4 },
+            {
+                name: "Free Estimate",
+                location: "/estimate",
+                activeIndex: 5,
+                tabInvisible: true,
+                props: { className: classes.drawerItemEstimate },
+            },
+        ],
+        [classes.drawerItemEstimate]
+    );
 
     useEffect(() => {
+        console.log("effect");
+        window.scrollTo(0, 0);
         [...routes, ...menuOptions].forEach((route) => {
-            switch (window.location.pathname) {
+            switch (location.pathname) {
                 case route.location:
                     if (value !== route.activeIndex) {
                         setValue(route.activeIndex);
@@ -230,7 +240,7 @@ function Header({
                     break;
             }
         });
-    }, [value, selectedMenuItem, routes, setValue, setSelectedMenuItem]);
+    }, [location, routes, selectedMenuItem, value]);
 
     const tabs = (
         <React.Fragment>
@@ -254,6 +264,7 @@ function Header({
                         );
                     } else return null;
                 })}
+                <Tab style={{ display: "none" }} />
             </Tabs>
             <Button
                 variant="contained"
@@ -264,6 +275,7 @@ function Header({
             >
                 Free Estimate
             </Button>
+
             <Menu
                 id="simple-menu"
                 anchorEl={anchorEl}
@@ -359,9 +371,8 @@ function Header({
                     </Toolbar>
                 </AppBar>
             </ElevationScroll>
-            <div className={classes.toolbarMargin} />
+            <div className={classes.toolbar} />
         </React.Fragment>
     );
 }
-
 export { Header };

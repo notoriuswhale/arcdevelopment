@@ -8,6 +8,7 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 import ButtonArrow from "./ButtonArrow";
 import background from "../../assets/background.jpg";
 import mobileBackground from "../../assets/mobileBackground.jpg";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     learnBtn: {
@@ -27,9 +28,12 @@ const useStyles = makeStyles((theme) => ({
         backgroundRepeat: "no-repeat",
         height: "75vh",
         minHeight: "40rem",
-        padding: "5rem",
+        padding: "9rem",
         width: "100%",
         [theme.breakpoints.down("md")]: {
+            padding: "4rem",
+        },
+        [theme.breakpoints.down("sm")]: {
             backgroundImage: `url(${mobileBackground})`,
             padding: "1rem",
             backgroundAttachment: "initial",
@@ -61,11 +65,18 @@ const CallToAction = (props) => {
         <Grid
             container
             className={classes.callContainer}
-            direction={matchesSM ? "column" : "row"}
+            // direction={matchesSM ? "column" : "row"}
             alignItems={"center"}
-            justify={matchesSM ? "center" : "space-between"}
+            alignContent={"center"}
+            justify={matchesSM ? "center" : "flex-end"}
         >
-            <Grid item style={{ textAlign: matchesSM ? "center" : "inherit" }}>
+            <Grid
+                item
+                xs={12}
+                md={6}
+                lg={4}
+                style={{ textAlign: matchesSM ? "center" : "inherit" }}
+            >
                 <Typography variant="h2">
                     Simple software.
                     <br /> Revolutionary Results.
@@ -73,7 +84,12 @@ const CallToAction = (props) => {
                 <Typography variant="subtitle2" style={{ fontSize: "1.5rem" }}>
                     Take advantage of <br /> 21st Century
                 </Typography>
-                <Button variant="outlined" className={classes.learnBtn}>
+                <Button
+                    variant="outlined"
+                    className={classes.learnBtn}
+                    component={Link}
+                    to="/revolution"
+                >
                     <span style={{ marginRight: "5px" }}>Learn More</span>
                     <ButtonArrow
                         fill={theme.palette.common.blue}
@@ -82,8 +98,19 @@ const CallToAction = (props) => {
                     />
                 </Button>
             </Grid>
-            <Grid item>
-                <Button className={classes.estimateBtn}>Free Estimate</Button>
+            <Grid
+                item
+                xs={12}
+                md={6}
+                style={{ textAlign: matchesSM ? "center" : "right" }}
+            >
+                <Button
+                    className={classes.estimateBtn}
+                    component={Link}
+                    to="/estimate"
+                >
+                    Free Estimate
+                </Button>
             </Grid>
         </Grid>
     );

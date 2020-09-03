@@ -18,6 +18,7 @@ import aboutBackground from "../assets/infoBackground.svg";
 import { ServiceItem } from "./ui/ServiceItem";
 
 import { CallToAction } from "./ui/CallToAction";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     mainContainer: {
@@ -191,6 +192,8 @@ const LandingPage = (props) => {
                     >
                         <Button
                             variant="contained"
+                            component={Link}
+                            to="/estimate"
                             className={classes.estimateBtn}
                         >
                             Free Estimate
@@ -230,6 +233,7 @@ const LandingPage = (props) => {
                 {/*Custom Software Developmnt*/}
                 <Grid item className={classes.serviceContainer}>
                     <ServiceItem
+                        href="/customsoftware"
                         header="Custom Software Development"
                         subtitle1="Save Energy. Save Time. Save Money."
                         subtitle2={
@@ -248,6 +252,7 @@ const LandingPage = (props) => {
                 {/*iOS/Android Developmnt*/}
                 <Grid item className={classes.serviceContainer}>
                     <ServiceItem
+                        href="/mobileapps"
                         header="iOS/Android App Development"
                         subtitle1="Extend functionality. Extend Access. Increase engagement."
                         subtitle2={
@@ -265,6 +270,7 @@ const LandingPage = (props) => {
                 {/*Website Developmnt*/}
                 <Grid item className={classes.serviceContainer}>
                     <ServiceItem
+                        href="/website"
                         header="Website Development"
                         subtitle1="Reach more. Discover more. Sell more."
                         subtitle2="Optimized for Search Engines, build for speed."
@@ -298,6 +304,8 @@ const LandingPage = (props) => {
                             technology is a recipe for revolution
                         </Typography>
                         <Button
+                            component={Link}
+                            to="/revolution"
                             variant="outlined"
                             className={classes.learnBtnHero}
                         >
@@ -341,6 +349,8 @@ const LandingPage = (props) => {
                             Lets get personal.
                         </Typography>
                         <Button
+                            component={Link}
+                            to="/about"
                             variant="outlined"
                             className={classes.learnBtnHero}
                             style={{ color: "white", borderColor: "white" }}
@@ -360,6 +370,8 @@ const LandingPage = (props) => {
                         </Typography>
                         <Typography variant="subtitle2">Say hello</Typography>
                         <Button
+                            component={Link}
+                            to="/contact"
                             variant="outlined"
                             className={classes.learnBtnHero}
                             style={{ color: "white", borderColor: "white" }}

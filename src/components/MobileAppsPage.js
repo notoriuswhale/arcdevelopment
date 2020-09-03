@@ -68,6 +68,8 @@ const useStyles = makeStyles((theme) => ({
     advantageItems: {
         margin: "24rem 0",
         [theme.breakpoints.down("md")]: {
+            justifyContent: "center",
+            flexDirection: "column",
             margin: "12rem 0",
         },
         [theme.breakpoints.down("sm")]: {
@@ -78,16 +80,21 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     advantageItem: {
-        width: "auto",
         textAlign: "center",
         "& img": {
             maxHeight: "14rem",
             maxWidth: "100%",
         },
         [theme.breakpoints.down("md")]: {
-            // marginTop: "5rem",
             marginBottom: "6rem",
-            alignSelf: "center",
+            // alignSelf: "center",
+        },
+    },
+    animation: {
+        maxWidth: "20rem",
+        height: "94%",
+        [theme.breakpoints.down("sm")]: {
+            height: "auto",
         },
     },
 }));
@@ -97,13 +104,8 @@ const MobileAppsPage = (props) => {
 
     return (
         <>
-            <Grid conteiner className={classes.mainContainer}>
-                <Grid
-                    item
-                    container
-                    justify
-                    className={classes.headerContainer}
-                >
+            <Grid container className={classes.mainContainer}>
+                <Grid item container className={classes.headerContainer}>
                     <Hidden mdDown>
                         <Grid
                             item
@@ -136,8 +138,6 @@ const MobileAppsPage = (props) => {
                             <Typography variant="h2">
                                 iOS/Android App Development
                             </Typography>
-                        </Grid>
-                        <Grid item>
                             <Typography variant="body1" paragraph>
                                 Mobile apps allow you to take your tools on the
                                 go.
@@ -209,7 +209,7 @@ const MobileAppsPage = (props) => {
                             </Typography>
                         </Grid>
                     </Grid>
-                    <Grid item md style={{ maxWidth: "20rem" }}>
+                    <Grid item md className={classes.animation}>
                         <Lottie options={integrationOptions}></Lottie>
                     </Grid>
                     <Grid
@@ -237,42 +237,29 @@ const MobileAppsPage = (props) => {
                     </Grid>
                 </Grid>
 
-                <Grid item container className={classes.advantageItems}>
-                    <Grid
-                        item
-                        lg
-                        container
-                        direction="column"
-                        alignItems="flex-start"
-                    >
-                        <Grid item className={classes.advantageItem}>
-                            <Typography variant="h4" gutterBottom>
-                                Extend Functionality
-                            </Typography>
-                            <img src={swissKnife} alt="Swiss Knife" />
-                        </Grid>
+                <Grid
+                    item
+                    container
+                    className={classes.advantageItems}
+                    justify="space-between"
+                >
+                    <Grid item className={classes.advantageItem}>
+                        <Typography variant="h4" gutterBottom>
+                            Extend Functionality
+                        </Typography>
+                        <img src={swissKnife} alt="Swiss Knife" />
                     </Grid>
-                    <Grid item lg container direction="column">
-                        <Grid item className={classes.advantageItem}>
-                            <Typography variant="h4" gutterBottom>
-                                Extend Access
-                            </Typography>
-                            <img src={extendAccess} alt="Swiss Knife" />
-                        </Grid>
+                    <Grid item lg={4} className={classes.advantageItem}>
+                        <Typography variant="h4" gutterBottom>
+                            Extend Access
+                        </Typography>
+                        <img src={extendAccess} alt="Swiss Knife" />
                     </Grid>
-                    <Grid
-                        item
-                        lg
-                        container
-                        direction="column"
-                        alignItems="flex-end"
-                    >
-                        <Grid item className={classes.advantageItem}>
-                            <Typography variant="h4" gutterBottom>
-                                Increase Engagement
-                            </Typography>
-                            <img src={increaseEngagement} alt="Swiss Knife" />
-                        </Grid>
+                    <Grid item className={classes.advantageItem}>
+                        <Typography variant="h4" gutterBottom>
+                            Increase Engagement
+                        </Typography>
+                        <img src={increaseEngagement} alt="Swiss Knife" />
                     </Grid>
                 </Grid>
             </Grid>
