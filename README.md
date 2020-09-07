@@ -3,7 +3,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## [Demo](https://notoriuswhale-arcdevelopment.netlify.app/)
 
 ## About
-Project to practice Material UI, nothing fancy.
+Project to practice Material UI for react.
 
 ## Available Scripts
 
